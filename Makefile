@@ -18,17 +18,17 @@ INCS = -I CMSIS/Device/Include \
 
 CFLAGS  = $(CPU) $(DEFS) $(INCS)
 CFLAGS += -mthumb 
-# CFLAGS += -g 
+CFLAGS += -g 
 CFLAGS += -Os
 # CFLAGS += -O0
-# CFLAGS += -ffunction-sections -fdata-sections
+CFLAGS += -ffunction-sections -fdata-sections
 CFLAGS += -Wl,--no-warn-rwx-segments
 
 ASFLAGS = $(CPU) -mthumb
 
 # Linker flags
 LDFLAGS  = -T Linker_script/linker_script.ld -static
-# LDFLAGS += -Wl,--gc-sections     # TODO: check whats wrong here
+LDFLAGS += -Wl,--gc-sections 
 # LDFLAGS += -Wl,--print-gc-sections
 LDFLAGS += -Wl,-Map=firmware.map
 LDFLAGS += -specs=nano.specs -specs=nosys.specs
@@ -46,7 +46,7 @@ SRCS += HAL/Src/stm32f4xx_hal_dma.c
 SRCS += HAL/Src/stm32f4xx_hal_dma_ex.c
 SRCS += Src/stm32f4xx_it.c 
 SRCS += Src/syscalls.c 
-# SRCS += Src/sysmem.c 
+SRCS += Src/sysmem.c 
 
 ASRCS = Startup/startup.s
 
@@ -79,6 +79,7 @@ gdb:
 	$(GDB) $(TARGET)
 	# (gdb) target extended-remote localhost:3333
 	# (gdb) monitor reset halt
+	# monitor arm semihosting enable
 	# (gdb) load
 	# (gdb) break main
 	# (gdb) continue
