@@ -150,17 +150,17 @@ int _execve(char *name, char **argv, char **env) {
   return -1;
 }
 
-// int __io_putchar(int ch) {
-//   // Ждём, пока регистр передачи освободится (TXE = 1)
-//   while (!(USART1->SR & USART_SR_TXE)) {
-//   }
-//   USART1->DR = (uint8_t)ch;
-//   return ch;
-// }
-//
-// int __io_getchar(void) {
-//   // Ждём, пока придёт байт (RXNE = 1)
-//   while (!(USART1->SR & USART_SR_RXNE)) {
-//   }
-//   return (int)(USART1->DR & 0xFF);
-// }
+int __io_putchar(int ch) {
+  // Ждём, пока регистр передачи освободится (TXE = 1)
+  while (!(USART1->SR & USART_SR_TXE)) {
+  }
+  USART1->DR = (uint8_t)ch;
+  return ch;
+}
+
+int __io_getchar(void) {
+  // Ждём, пока придёт байт (RXNE = 1)
+  while (!(USART1->SR & USART_SR_RXNE)) {
+  }
+  return (int)(USART1->DR & 0xFF);
+}

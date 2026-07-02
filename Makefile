@@ -47,6 +47,7 @@ SRCS += HAL/Src/stm32f4xx_hal_dma_ex.c
 SRCS += Src/stm32f4xx_it.c 
 SRCS += Src/syscalls.c 
 SRCS += Src/sysmem.c 
+SRCS += Src/usart_init.c 
 
 ASRCS = Startup/startup.s
 
