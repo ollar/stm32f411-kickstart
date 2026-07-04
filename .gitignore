@@ -6,5 +6,4 @@ xpacks
 blink.elf
 .DS_Store
 firmware.map
-lvgl_tmp
-
+git_sources
