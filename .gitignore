@@ -7,3 +7,7 @@ blink.elf
 .DS_Store
 firmware.map
 git_sources
+HAL
+CMSIS
+Startup
+Linker_script
