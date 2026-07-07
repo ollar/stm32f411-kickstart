@@ -16,5 +16,7 @@ wget https://raw.githubusercontent.com/STMicroelectronics/STM32CubeF4/refs/heads
 wget https://raw.githubusercontent.com/STMicroelectronics/STM32CubeF4/refs/heads/master/Projects/STM32F411RE-Nucleo/Templates/STM32CubeIDE/STM32F411RETX_FLASH.ld -O Linker_script/linker_script.ld
 wget https://raw.githubusercontent.com/STMicroelectronics/STM32CubeF4/89e6d4466578bc9eab83de8fcd1e397ceb5e5cc9/Projects/STM32F411RE-Nucleo/Templates/STM32CubeIDE/Example/Startup/startup_stm32f411retx.s -O Startup/startup.s
 
+xpm install @xpack-dev-tools/arm-none-eabi-gcc@latest --verbose
+
 echo "copy misc complete"
 
