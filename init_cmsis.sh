@@ -22,8 +22,8 @@ git clone https://github.com/ARM-software/CMSIS_6 --depth=1
 cd ..
 mkdir -p ${TARGET}/Core/Include/m-profile
 
-cp git_sources/CMSIS_6/CMSIS/Core/Include/{cmsis_compiler.h,cmsis_gcc.h,cmsis_version.h,core_cm4.h} ${TARGET}/Core/Include 
-cp git_sources/CMSIS_6/CMSIS/Core/Include/m-profile/{armv7m_mpu.h,cmsis_gcc_m.h} ${TARGET}/Core/Include/m-profile
+cp git_sources/CMSIS_6/CMSIS/Core/Include/{cmsis_compiler.h,cmsis_gcc.h,cmsis_version.h,core_cm4.h,cmsis_clang.h} ${TARGET}/Core/Include 
+cp git_sources/CMSIS_6/CMSIS/Core/Include/m-profile/{armv7m_mpu.h,cmsis_gcc_m.h,cmsis_clang_m.h} ${TARGET}/Core/Include/m-profile
 echo "CMSIS Core complete"
 
 #  CMSIS
