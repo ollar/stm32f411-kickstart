@@ -1,5 +1,7 @@
 #include "stm32f4xx_hal.h"
 
+USART_HandleTypeDef huart1 = {0};
+
 void usart1_init(void) {
   // 1. Включаем тактирование GPIOA и USART1
   __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -20,12 +22,18 @@ void usart1_init(void) {
   gpio.Pin = GPIO_PIN_10;
   HAL_GPIO_Init(GPIOA, &gpio);
 
-  // 3. Конфигурируем USART1
-  //    После сброса F411 работает на HSI 16 МГц, APB2 = 16 МГц.
-  //    BRR считается автоматически через HAL:
-  uint32_t apb2_freq = HAL_RCC_GetPCLK2Freq();
-  USART1->BRR = (apb2_freq + 115200u / 2u) / 115200u;
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  HAL_USART_Init(&huart1);
+}
 
-  // Включаем передатчик (TE), приёмник (RE) и сам USART (UE)
-  USART1->CR1 = USART_CR1_TE | USART_CR1_RE | USART_CR1_UE;
+void hprintf(const char *str) {
+  while (*str) {
+    HAL_USART_Transmit(&huart1, (uint8_t *)str, 1, HAL_MAX_DELAY);
+    str++;
+  }
 }
