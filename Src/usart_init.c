@@ -1,5 +1,8 @@
 #include "stm32f4xx_hal.h"
 
+#include <stdarg.h>
+#include <stdio.h> // для sprintf / snprintf
+
 USART_HandleTypeDef huart1 = {0};
 
 void usart1_init(void) {
@@ -36,4 +39,15 @@ void hprintf(const char *str) {
     HAL_USART_Transmit(&huart1, (uint8_t *)str, 1, HAL_MAX_DELAY);
     str++;
   }
+}
+
+void hprintf_formatted(const char *fmt, ...) {
+  char buffer[128]; // размер подберите под свои нужды
+  va_list args;
+
+  va_start(args, fmt);
+  vsnprintf(buffer, sizeof(buffer), fmt, args); // безопасное форматирование
+  va_end(args);
+
+  hprintf(buffer);
 }
